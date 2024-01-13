@@ -1,19 +1,20 @@
-import express from 'express';
-import mongoose from 'mongoose';
-import morgan from 'morgan';
-import cors from 'cors';
+import express from "express";
+import mongoose from "mongoose";
+import morgan from "morgan";
+import cors from "cors";
 
-import { notFoundError, errorHandler } from './middlewares/error-handler.js';
+import { notFoundError, errorHandler } from "./middlewares/error-handler.js";
 
-import gameRoutes from './routes/game.js';
-import userRoutes from './routes/user.js';
-import achatRoutes from './routes/achat.js';
+import gameRoutes from "./routes/game.js";
+import userRoutes from "./routes/user.js";
+import achatRoutes from "./routes/achat.js";
+/////commit maryem
 
 const app = express();
 const port = process.env.PORT || 9090;
-const databaseName = 'exerice4gamix2122';
+const databaseName = "exerice4gamix2122";
 
-mongoose.set('debug', true);
+mongoose.set("debug", true);
 mongoose.Promise = global.Promise;
 
 mongoose
@@ -21,19 +22,19 @@ mongoose
   .then(() => {
     console.log(`Connected to ${databaseName}`);
   })
-  .catch(err => {
+  .catch((err) => {
     console.log(err);
   });
 
-  app.use(cors());
-  app.use(morgan('dev'));
-  app.use(express.json());
-  app.use(express.urlencoded({ extended: true }));
-  app.use('/img', express.static('public/images'));
+app.use(cors());
+app.use(morgan("dev"));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use("/img", express.static("public/images"));
 
-app.use('/game', gameRoutes);
-app.use('/user', userRoutes);
-app.use('/buy', achatRoutes);
+app.use("/game", gameRoutes);
+app.use("/user", userRoutes);
+app.use("/buy", achatRoutes);
 
 app.use(notFoundError);
 app.use(errorHandler);
