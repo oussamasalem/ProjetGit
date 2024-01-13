@@ -8,6 +8,7 @@ import { notFoundError, errorHandler } from './middlewares/error-handler.js';
 import gameRoutes from './routes/game.js';
 import userRoutes from './routes/user.js';
 import achatRoutes from './routes/achat.js';
+//khouloud
 
 const app = express();
 const port = process.env.PORT || 9090;
@@ -25,11 +26,11 @@ mongoose
     console.log(err);
   });
 
-  app.use(cors());
-  app.use(morgan('dev'));
-  app.use(express.json());
-  app.use(express.urlencoded({ extended: true }));
-  app.use('/img', express.static('public/images'));
+app.use(cors());
+app.use(morgan('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use('/img', express.static('public/images'));
 
 app.use('/game', gameRoutes);
 app.use('/user', userRoutes);
